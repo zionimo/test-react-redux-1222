@@ -1,13 +1,27 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import React from "react";
+import ReactDOM from "react-dom/client";
+import "./index.css";
+import App from "./App";
+import reportWebVitals from "./reportWebVitals";
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
+// 라우터 사용을 위한 브라우저라우터
+import { BrowserRouter } from "react-router-dom";
+
+// 리덕스를 사용하기위해 리덕스 프로바이더 추가
+import { Provider } from "react-redux";
+import { createStore } from "redux";
+import rootReducer from "./modules";
+
+const store = createStore(rootReducer);
+
+const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <App />
+    <Provider store={store}>
+      <BrowserRouter>
+        <App />
+      </BrowserRouter>
+    </Provider>
   </React.StrictMode>
 );
 
